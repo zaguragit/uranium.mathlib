@@ -42,23 +42,23 @@ fun mix(a: Vec2f, b: Vec2f, ratio: Float): Vec2f {
     return Vec2f(x, y)
 }
 
-fun mix(a: Float, b: Float, ratio: Float): Float {
+inline fun mix(a: Float, b: Float, ratio: Float): Float {
     val inverseRatio = 1f - ratio
     return a * inverseRatio + b * ratio
 }
 
-fun mix(a: Double, b: Double, ratio: Double): Double {
+inline fun mix(a: Double, b: Double, ratio: Double): Double {
     val inverseRatio = 1f - ratio
     return a * inverseRatio + b * ratio
 }
 
-fun clamp(x: Float, min: Float, max: Float): Float = when {
+inline fun clamp(x: Float, min: Float, max: Float): Float = when {
     x < min -> min
     x > max -> max
     else -> x
 }
 
-fun clamp(x: Double, min: Double, max: Double): Double = when {
+inline fun clamp(x: Double, min: Double, max: Double): Double = when {
     x < min -> min
     x > max -> max
     else -> x

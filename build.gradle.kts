@@ -20,7 +20,7 @@ publishing {
     publications {
         create<MavenPublication>("maven") {
             groupId = "io.posidon"
-            artifactId = "uranium.mathLib"
+            artifactId = "uranium.mathlib"
             version = "1.0.0"
 
             from(components["kotlin"])

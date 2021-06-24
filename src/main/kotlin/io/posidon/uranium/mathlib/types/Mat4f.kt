@@ -181,21 +181,8 @@ open class Mat4f(
             return result
         }
 
-        fun translate(translation: Vec3f): Mat4f {
-            val result = identity()
-            result[3, 0] = translation.x
-            result[3, 1] = translation.y
-            result[3, 2] = translation.z
-            return result
-        }
-
-        fun translate(translation: Vec2f): Mat4f {
-            val result = identity()
-            result[3, 0] = translation.x
-            result[3, 1] = translation.y
-            result[3, 2] = 0f
-            return result
-        }
+        inline fun translate(translation: Vec3f): Mat4f = translate(translation.x, translation.y, translation.z)
+        inline fun translate(translation: Vec2f): Mat4f = translate(translation.x, translation.y, 0f)
 
         fun rotateX(radians: Double): Mat4f {
             val result = identity()
@@ -257,19 +244,13 @@ open class Mat4f(
             return result
         }
 
-        fun scale(scale: Vec3f): Mat4f {
-            val result = identity()
-            result[0, 0] = scale.x
-            result[1, 1] = scale.y
-            result[2, 2] = scale.z
-            return result
-        }
+        inline fun scale(scale: Vec3f): Mat4f = scale(scale.x, scale.y, scale.z)
 
         fun transform(x: Float, y: Float, z: Float, scaleX: Float, scaleY: Float, scaleZ: Float, rotationX: Float, rotationY: Float, rotationZ: Float): Mat4f {
             val rotX = rotateX(rotationX.toDouble())
             val rotY = rotateY(rotationY.toDouble())
             val rotZ = rotateZ(rotationZ.toDouble())
-            return scale(scaleX, scaleY, scaleZ) * (rotX * rotY * rotZ) * translate(x, y, z)
+            return (rotX * rotY * rotZ) * scale(scaleX, scaleY, scaleZ) * translate(x, y, z)
         }
 
         fun projection(fov: Float, aspectRatio: Float, near: Float, far: Float): Mat4f {
