@@ -245,36 +245,5 @@ open class Mat4f(
         }
 
         inline fun scale(scale: Vec3f): Mat4f = scale(scale.x, scale.y, scale.z)
-
-        fun transform(x: Float, y: Float, z: Float, scaleX: Float, scaleY: Float, scaleZ: Float, rotationX: Float, rotationY: Float, rotationZ: Float): Mat4f {
-            val rotX = rotateX(rotationX.toDouble())
-            val rotY = rotateY(rotationY.toDouble())
-            val rotZ = rotateZ(rotationZ.toDouble())
-            return (rotX * rotY * rotZ) * scale(scaleX, scaleY, scaleZ) * translate(x, y, z)
-        }
-
-        fun projection(fov: Float, aspectRatio: Float, near: Float, far: Float): Mat4f {
-            val result = identity()
-            val tanfov = tan(fov / 2.0).toFloat()
-            val range = far - near
-            result[0, 0] = 1f / (aspectRatio * tanfov)
-            result[1, 1] = 1f / tanfov
-            result[2, 2] = -(far + near) / range
-            result[2, 3] = -1f
-            result[3, 2] = -(2 * far * near) / range
-            result[3, 3] = 0f
-            return result
-        }
-
-        fun view(position: Vec3f, rotation: Vec2f): Mat4f {
-            val translation = identity().apply {
-                this[3, 0] = -position.x
-                this[3, 1] = -position.y
-                this[3, 2] = -position.z
-            }
-            val rotX = rotateX(rotation.x.toDouble())
-            val rotY = rotateY(rotation.y.toDouble())
-            return translation * (rotY * rotX)
-        }
     }
 }
