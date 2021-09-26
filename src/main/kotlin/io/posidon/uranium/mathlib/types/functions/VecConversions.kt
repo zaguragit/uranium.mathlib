@@ -1,3 +1,5 @@
+package io.posidon.uranium.mathlib.types.functions
+
 import io.posidon.uranium.mathlib.types.*
 import kotlin.math.ceil
 import kotlin.math.floor

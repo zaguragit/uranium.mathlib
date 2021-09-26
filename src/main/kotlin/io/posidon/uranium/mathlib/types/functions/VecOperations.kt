@@ -1,5 +1,6 @@
-package io.posidon.uranium.mathlib.types
+package io.posidon.uranium.mathlib.types.functions
 
+import io.posidon.uranium.mathlib.types.*
 import kotlin.math.*
 
 inline val Vec2f.length get() = sqrt(x * x + y * y)
